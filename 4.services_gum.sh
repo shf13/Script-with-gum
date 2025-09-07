@@ -4,7 +4,7 @@ clear
 
 sudo apt update
 
-AVAILABLE_OPTIONS_services=("docker" "Adding SSH key" "UFW" "ncdu")
+AVAILABLE_OPTIONS_services=("docker" "Adding SSH key" "UFW" )
 SELECTED_OPTIONS_services="Adding SSH key"  # Default selection
 
 
@@ -84,7 +84,7 @@ setting_up_UFW() {
     if [ $? -gt 0 ]; then
             echo "ufw doesn't exist on the machine"
         echo "I will install ufw"
-        sudo apt install ufw
+        sudo apt install ufw -y
     else
         echo "ufw is installed already"
     fi
@@ -123,12 +123,6 @@ setting_up_UFW() {
     gum style --foreground 85 "✓ Obsidian installed successfully"
 }
 
-install_ncdu() {
-    gum spin --spinner jump --title "Deploying Docker Container..." -- sleep 1
-	sudo apt install ncdu
-    gum style --foreground 85 "✓ Docker container deployed successfully"
-}
-
 
 # Process each selected option
 ## split a comma-separated string into an array
@@ -144,9 +138,6 @@ for option in "${SELECTED_ARRAY_CLI[@]}"; do
             ;;
         "UFW")
             setting_up_UFW
-            ;;
-        "ncdu")
-            install_ncdu
             ;;
     esac
     echo

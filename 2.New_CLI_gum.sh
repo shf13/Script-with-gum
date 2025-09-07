@@ -30,25 +30,25 @@ gum confirm "Proceed with installation?" || exit 0
 # Installation functions for CLI
 install_ranger() {
     gum spin --spinner dot --title "Installing ranger..." -- sleep 1
-    sudo apt-get install ranger
+    sudo apt-get install ranger -y
     gum style --foreground 85 "✓ Docker installed successfully"
 }
 
 install_eza() {
     gum spin --spinner line --title "Installing exa..." -- sleep 1.5
-    sudo apt-get install eza
+    sudo apt-get install eza -y
     gum style --foreground 85 "✓ exa installed successfully"
 }
 
 install_duf() {
     gum spin --spinner minidot --title "Installing duf..." -- sleep 1
-    sudo apt install duf
+    sudo apt install duf -y
     gum style --foreground 85 "✓ Obsidian installed successfully"
 }
 
 install_ncdu() {
     gum spin --spinner jump --title "Deploying Docker Container..." -- sleep 1
-	sudo apt install ncdu
+	sudo apt install ncdu -y
     gum style --foreground 85 "✓ Docker container deployed successfully"
 }
 
