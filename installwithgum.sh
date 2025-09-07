@@ -4,6 +4,7 @@ source ./Intro.sh
 
 
 source ./guminstall.sh
+source ./bashrcaliases.sh
 
 
 source ./services_gum.sh
