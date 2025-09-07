@@ -1,4 +1,6 @@
 
+source ./Intro.sh
+
 
 source ./guminstall.sh
 
