@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AVAILABLE_OPTIONS_TUIs=("lazydocker" "lazygit" )
+AVAILABLE_OPTIONS_TUIs=("lazydocker" "lazygit" "lazyvim" )
 SELECTED_OPTIONS_TUIs="ranger"  # Default selection
 
 
@@ -35,6 +35,12 @@ install_lazygit() {
     gum style --foreground 85 "✓ lazygit installed successfully"
 }
 
+install_lazyvim() {
+    gum spin --spinner line --title "Installing lazyvim..." -- sleep 1.5
+    source ./neovim/install-neovim.sh
+    gum style --foreground 85 "✓ lazyvim installed successfully"
+}
+
 
 # Process each selected option
 ## split a comma-separated string into an array
@@ -47,6 +53,9 @@ for option in "${SELECTED_ARRAY_TUIs[@]}"; do
             ;;
         "lazygit")
             install_lazygit
+            ;;
+        "lazyvim")
+            install_lazyvim
             ;;
     esac
     echo
