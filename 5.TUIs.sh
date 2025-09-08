@@ -25,19 +25,19 @@ gum confirm "Proceed with installation?" || exit 0
 # Installation functions for TUIs
 install_lazydocker() {
     gum spin --spinner dot --title "Installing lazydocker..." -- sleep 1
-    source ./lazydocker.sh
+    bash ./TUIs/lazydocker.sh
     gum style --foreground 85 "✓ lazydocker installed successfully"
 }
 
 install_lazygit() {
     gum spin --spinner line --title "Installing lazygit..." -- sleep 1.5
-    source ./lazygit.sh
+    bash ./TUIs/lazygit.sh
     gum style --foreground 85 "✓ lazygit installed successfully"
 }
 
 install_lazyvim() {
     gum spin --spinner line --title "Installing lazyvim..." -- sleep 1.5
-    source ./neovim/install-neovim.sh
+    bash ./TUIs/neovim/install-neovim.sh
     gum style --foreground 85 "✓ lazyvim installed successfully"
 }
 

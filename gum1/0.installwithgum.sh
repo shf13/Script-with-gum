@@ -26,6 +26,7 @@ source ./2.New_CLI_gum.sh
 source ./3.bashrcaliases.sh
 source ./4.services_gum.sh
 source ./5.TUIs.sh
+source ./6.theinstall.sh
 
 
 
