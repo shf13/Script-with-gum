@@ -11,7 +11,9 @@ add_aliases() {
 
 # Process each selected option
 
-for option in "${CHOICES_Aliases}"; do
+IFS=',' read -ra SELECTED_ARRAY_Aliases <<< "$CHOICES_Aliases"
+
+for option in "${SELECTED_ARRAY_Aliases[@]}"; do
     case "$option" in
         "Yas")
             add_aliases
@@ -53,7 +55,9 @@ install_ncdu() {
 
 # Process each selected option
 
-for option in "${CHOICES_CLI}"; do
+IFS=',' read -ra SELECTED_ARRAY_CLI <<< "$CHOICES_CLI"
+
+for option in "${SELECTED_ARRAY_CLI[@]}"; do
     case "$option" in
         "ranger")
             install_ranger
@@ -174,9 +178,9 @@ setting_up_UFW() {
 
 # Process each selected option
 ## split a comma-separated string into an array
-IFS=',' read -ra SELECTED_ARRAY_CLI <<< "$CHOICES_CLI"
+IFS=',' read -ra SELECTED_ARRAY_service <<< "$CHOICES_services"
 
-for option in "${SELECTED_ARRAY_CLI[@]}"; do
+for option in "${SELECTED_ARRAY_service[@]}"; do
     case "$option" in
         "Docker")
             install_docker

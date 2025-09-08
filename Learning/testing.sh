@@ -4,8 +4,8 @@ SELECTED_OPTIONS_CLI="ranger"  # Default selection
 
 # Let user choose multiple options
 echo "$(gum style --foreground 85 "Select the CLIs you want to install:")"
-# CHOICES_CLI=$(gum choose "${AVAILABLE_OPTIONS_CLI[@]}" --no-limit --height 6 --header "Use SPACE to select, ENTER to confirm" | tr '\n' ',' )
-CHOICES_CLI=$(gum choose "${AVAILABLE_OPTIONS_CLI[@]}" --no-limit --height 6 --header "Use SPACE to select, ENTER to confirm"  )
+CHOICES_CLI=$(gum choose "${AVAILABLE_OPTIONS_CLI[@]}" --no-limit --height 6 --header "Use SPACE to select, ENTER to confirm" | tr '\n' ',' )
+# CHOICES_CLI=$(gum choose "${AVAILABLE_OPTIONS_CLI[@]}" --no-limit --height 6 --header "Use SPACE to select, ENTER to confirm"  )
 
 echo $CHOICES_CLI
 

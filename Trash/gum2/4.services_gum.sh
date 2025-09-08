@@ -1,41 +1,14 @@
 #!/bin/bash
+# Update, setup ssh key RU, Setting up UFW and adding ssh port, then installing Docker 
 
-## Install FUNCTIONS
-# Aliasses
-add_aliases() {
-    gum spin --spinner dot --title "Adding the aliases..." -- sleep 1
-    cat ./dotfile/bash_aliases >> ~/.bashrc
-    source ~/.bashrc
-    gum style --foreground 85 "✓ Done successfully"
-}
-
-# Installation functions for CLI
-install_ranger() {
-    gum spin --spinner dot --title "Installing ranger..." -- sleep 1
-    sudo apt-get install ranger -y
-    gum style --foreground 85 "✓ Docker installed successfully"
-}
-
-install_eza() {
-    gum spin --spinner line --title "Installing exa..." -- sleep 1.5
-    sudo apt-get install eza -y
-    gum style --foreground 85 "✓ exa installed successfully"
-}
-
-install_duf() {
-    gum spin --spinner minidot --title "Installing duf..." -- sleep 1
-    sudo apt install duf -y
-    gum style --foreground 85 "✓ Obsidian installed successfully"
-}
-
-install_ncdu() {
-    gum spin --spinner jump --title "Deploying Docker Container..." -- sleep 1
-	sudo apt install ncdu -y
-    gum style --foreground 85 "✓ Docker container deployed successfully"
-}
+AVAILABLE_OPTIONS_services=("docker" "Adding SSH key" "UFW" )
+SELECTED_OPTIONS_services="Adding SSH key"  # Default selection
 
 
-# Installation functions for_services
+# Let user choose multiple options
+echo "$(gum style --foreground 85 "Select what you want to install:")"
+export CHOICES_services=$(gum choose "${AVAILABLE_OPTIONS_services[@]}" --no-limit --selected "$SELECTED_OPTIONS_services" --height 6 --header "Use SPACE to select, ENTER to confirm")
+
 install_docker() {
     gum spin --spinner dot --title "Installing ranger..." -- sleep 1
     sleep 0.5
@@ -133,73 +106,9 @@ setting_up_UFW() {
 }
 
 
-install_lazydocker() {
-    gum spin --spinner dot --title "Installing lazydocker..." -- sleep 1
-    bash ./TUIs/lazydocker.sh
-    gum style --foreground 85 "✓ lazydocker installed successfully"
-}
 
-install_lazygit() {
-    gum spin --spinner line --title "Installing lazygit..." -- sleep 1.5
-    bash ./TUIs/lazygit.sh
-    gum style --foreground 85 "✓ lazygit installed successfully"
-}
-
-install_lazyvim() {
-    gum spin --spinner line --title "Installing lazyvim..." -- sleep 1.5
-    bash ./TUIs/neovim/install-neovim.sh
-    gum style --foreground 85 "✓ lazyvim installed successfully"
-}
-
-
-
-
-# Process each selected option
-
-for option in "${CHOICES_Aliases}"; do
-    case "$option" in
-        "Yas")
-            add_aliases
-            ;;
-        "No")
-            exit 0
-            ;;
-    esac
-    echo
-done
-
-##############
-
-
-
-# Process each selected option
-
-for option in "${CHOICES_CLI}"; do
-    case "$option" in
-        "ranger")
-            install_ranger
-            ;;
-        "eza")
-            install_eza
-            ;;
-        "duf")
-            install_duf
-            ;;
-        "ncdu")
-            install_ncdu
-            ;;
-    esac
-    echo
-done
-
-###########
-
-
-
-# Process each selected option
-
-for option in "${CHOICES_services}"; do
-    case "$option" in
+for service in "${CHOICES_services}"; do
+    case "$service" in
         "Docker")
             install_docker
             ;;
@@ -212,42 +121,3 @@ for option in "${CHOICES_services}"; do
     esac
     echo
 done
-
-
-
-
-##################
-
-
-# Process each selected option
-
-for option in "${CHOICES_TUIs}"; do
-    case "$option" in
-        "lazydocker")
-            install_lazydocker
-            ;;
-        "lazygit")
-            install_lazygit
-            ;;
-        "lazyvim")
-            install_lazyvim
-            ;;
-    esac
-    echo
-done
-
-# Completion message
-gum style --foreground 212 --border-foreground 212 --border double --align center --width 50 --margin "1 2" --padding "2 4" \
-"INSTALLATION COMPLETE" "Selected operations finished successfully!"
-
-
-# Final prompt
-echo
-gum style --foreground 85 "Press any key to continue..."
-gum input --placeholder "Press Enter to exit"
-
-
-
-
-
-
