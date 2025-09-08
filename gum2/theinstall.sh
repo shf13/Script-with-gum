@@ -1,29 +1,13 @@
 #!/bin/bash
 
-
-# Installation functions for
+## Install FUNCTIONS
+# Aliasses
 add_aliases() {
     gum spin --spinner dot --title "Adding the aliases..." -- sleep 1
     cat ./dotfile/bash_aliases >> ~/.bashrc
     source ~/.bashrc
     gum style --foreground 85 "✓ Done successfully"
 }
-
-# Process each selected option
-
-for option in "${CHOICES_Aliases}"; do
-    case "$option" in
-        "Yas")
-            add_aliases
-            ;;
-        "No")
-            exit 0
-            ;;
-    esac
-    echo
-done
-
-##############
 
 # Installation functions for CLI
 install_ranger() {
@@ -49,29 +33,6 @@ install_ncdu() {
 	sudo apt install ncdu -y
     gum style --foreground 85 "✓ Docker container deployed successfully"
 }
-
-
-# Process each selected option
-
-for option in "${CHOICES_CLI}"; do
-    case "$option" in
-        "ranger")
-            install_ranger
-            ;;
-        "eza")
-            install_eza
-            ;;
-        "duf")
-            install_duf
-            ;;
-        "ncdu")
-            install_ncdu
-            ;;
-    esac
-    echo
-done
-
-###########
 
 
 # Installation functions for_services
@@ -172,30 +133,6 @@ setting_up_UFW() {
 }
 
 
-# Process each selected option
-## split a comma-separated string into an array
-IFS=',' read -ra SELECTED_ARRAY_CLI <<< "$CHOICES_CLI"
-
-for option in "${SELECTED_ARRAY_CLI[@]}"; do
-    case "$option" in
-        "Docker")
-            install_docker
-            ;;
-        "Adding SSH key")
-            add_ssh_key
-            ;;
-        "UFW")
-            setting_up_UFW
-            ;;
-    esac
-    echo
-done
-
-
-
-
-##################
-
 install_lazydocker() {
     gum spin --spinner dot --title "Installing lazydocker..." -- sleep 1
     bash ./TUIs/lazydocker.sh
@@ -215,11 +152,76 @@ install_lazyvim() {
 }
 
 
-# Process each selected option
-## split a comma-separated string into an array
-IFS=',' read -ra SELECTED_ARRAY_TUIs <<< "$CHOICES_TUIs"
 
-for option in "${SELECTED_ARRAY_TUIs[@]}"; do
+
+# Process each selected option
+
+for option in "${CHOICES_Aliases}"; do
+    case "$option" in
+        "Yas")
+            add_aliases
+            ;;
+        "No")
+            exit 0
+            ;;
+    esac
+    echo
+done
+
+##############
+
+
+
+# Process each selected option
+
+for option in "${CHOICES_CLI}"; do
+    case "$option" in
+        "ranger")
+            install_ranger
+            ;;
+        "eza")
+            install_eza
+            ;;
+        "duf")
+            install_duf
+            ;;
+        "ncdu")
+            install_ncdu
+            ;;
+    esac
+    echo
+done
+
+###########
+
+
+
+# Process each selected option
+
+for option in "${CHOICES_services}"; do
+    case "$option" in
+        "Docker")
+            install_docker
+            ;;
+        "Adding SSH key")
+            add_ssh_key
+            ;;
+        "UFW")
+            setting_up_UFW
+            ;;
+    esac
+    echo
+done
+
+
+
+
+##################
+
+
+# Process each selected option
+
+for option in "${CHOICES_TUIs}"; do
     case "$option" in
         "lazydocker")
             install_lazydocker

@@ -16,3 +16,17 @@ RED_COLOR "██████  ██░ ██   █████▒     ██�
                                      ░                                       "
 
 
+
+sudo apt update 1> /dev/null
+sudo apt install curl wget -y
+
+# source ./Intro.sh
+source ./1.guminstall.sh
+source ./2.New_CLI_gum.sh
+source ./3.bashrcaliases.sh
+source ./4.services_gum.sh
+source ./5.TUIs.sh
+source ./6.theinstall.sh
+
+
+

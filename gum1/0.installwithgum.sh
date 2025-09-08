@@ -17,7 +17,7 @@ RED_COLOR "██████  ██░ ██   █████▒     ██�
 
 
 
-sudo apt update
+sudo apt update 
 sudo apt install curl wget -y
 
 # source ./Intro.sh
