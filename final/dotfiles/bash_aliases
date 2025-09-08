@@ -27,5 +27,9 @@ alias ssha1="eval "$(ssh-agent -s)""
 alias ssha2="ssh-add ~/.ssh/gitkey"
 alias ssha3="ssh -T git@github.com"
 
+# Gives you what is using the most space. Both directories and files. Varies on current directory
+
+alias most='du -hsx * | sort -rh | head -10'
+
 
 
