@@ -1,7 +1,7 @@
 #!/bin/bash
 
-gum style --foreground 212 --border-foreground 212 --border double --align center --width 50 --margin "1 2" --padding "2 4" \
-"SYSTEM SETUP WIZARD" "Choose your installation options"
+# gum style --foreground 212 --border-foreground 212 --border double --align center --width 50 --margin "1 2" --padding "2 4" \
+# "SYSTEM SETUP WIZARD" "Choose your installation options"
 
 
 AVAILABLE_OPTIONS_Aliases=("Yes" "No")
