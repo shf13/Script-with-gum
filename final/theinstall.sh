@@ -12,25 +12,25 @@ add_aliases() {
 
 # Installation functions for CLI
 install_ranger() {
-    gum spin --spinner dot --title "Installing ranger..." -- sleep 1
+    gum spin --spinner dot --title "Installing ranger..." -- sleep 0.2
     sudo apt-get install ranger -y
     gum style --foreground 85 "✓ ranger installed successfully"
 }
 
 install_eza() {
-    gum spin --spinner line --title "Installing exa..." -- sleep 1.5
+    gum spin --spinner line --title "Installing exa..." -- sleep 0.2
     sudo apt-get install eza -y
     gum style --foreground 85 "✓ eza installed successfully"
 }
 
 install_duf() {
-    gum spin --spinner minidot --title "Installing duf..." -- sleep 1
+    gum spin --spinner minidot --title "Installing duf..." -- sleep 0.2
     sudo apt install duf -y
     gum style --foreground 85 "✓ duf installed successfully"
 }
 
 install_ncdu() {
-    gum spin --spinner jump --title "Deploying Docker Container..." -- sleep 1
+    gum spin --spinner jump --title "Deploying Docker Container..." -- sleep 0.2
 	sudo apt install ncdu -y
     gum style --foreground 85 "✓ ncdu installed successfully"
 }
@@ -40,7 +40,7 @@ install_ncdu() {
 
 # Installation functions for_services
 install_docker() {
-    gum spin --spinner dot --title "Installing ranger..." -- sleep 1
+    gum spin --spinner dot --title "Installing ranger..." -- sleep 0.2
     sleep 0.5
     sudo apt-get update
 
@@ -69,7 +69,7 @@ install_docker() {
 }
 
 add_ssh_key() {
-    gum spin --spinner line --title "Adding the ssh key..." -- sleep 1.5
+    gum spin --spinner line --title "Adding the ssh key..." -- sleep 0.2
     echo "---------------"
     echo "Adding the ru ssh key."
     echo "---------------"
@@ -138,19 +138,19 @@ setting_up_UFW() {
 
 
 install_lazydocker() {
-    gum spin --spinner dot --title "Installing lazydocker..." -- sleep 1
+    gum spin --spinner dot --title "Installing lazydocker..." -- sleep 0.2
     bash ./TUIs/lazydocker.sh
     gum style --foreground 85 "✓ lazydocker installed successfully"
 }
 
 install_lazygit() {
-    gum spin --spinner line --title "Installing lazygit..." -- sleep 1.5
+    gum spin --spinner line --title "Installing lazygit..." -- sleep 0.2
     bash ./TUIs/lazygit.sh
     gum style --foreground 85 "✓ lazygit installed successfully"
 }
 
 install_lazyvim() {
-    gum spin --spinner line --title "Installing lazyvim..." -- sleep 1.5
+    gum spin --spinner line --title "Installing lazyvim..." -- sleep 0.2
     bash ./TUIs/neovim/install-neovim.sh
     gum style --foreground 85 "✓ lazyvim installed successfully"
 }
