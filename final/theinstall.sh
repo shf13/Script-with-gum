@@ -2,10 +2,17 @@
 
 
 # Installation functions for Aliases
-add_aliases() {
+add_bash_aliases() {
     gum spin --spinner dot --title "Adding the aliases..." -- sleep 1
-    cat ./dotfile/bash_aliases >> ~/.bashrc
+    cat ./dotfiles/bash_aliases >> ~/.bashrc
     source ~/.bashrc
+    gum style --foreground 85 "✓ Done successfully"
+}
+
+add_fish_aliases() {
+    gum spin --spinner dot --title "Adding the aliases..." -- sleep 1
+    cat ./dotfiles/fish_aliases >> ~/.config/fish/config.fish
+    source ~/.config/fish/config.fish
     gum style --foreground 85 "✓ Done successfully"
 }
 
@@ -163,11 +170,11 @@ IFS=',' read -ra SELECTED_ARRAY_Aliases <<< "$CHOICES_Aliases"
 
 for option in "${SELECTED_ARRAY_Aliases[@]}"; do
     case "$option" in
-        "Yas")
-            add_aliases
+        "BASH")
+            add_bash_aliases
             ;;
-        "No")
-            exit 0
+        "Fish")
+            add_fish_aliases
             ;;
     esac
     echo

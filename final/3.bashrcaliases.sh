@@ -4,8 +4,8 @@
 # "SYSTEM SETUP WIZARD" "Choose your installation options"
 
 
-AVAILABLE_OPTIONS_Aliases=("Yes" "No")
-SELECTED_OPTIONS_Aliases="Yes"  # Default selection
+AVAILABLE_OPTIONS_Aliases=("BASH" "Fish")
+SELECTED_OPTIONS_Aliases="BASH"  # Default selection
 
 
 # Let user choose multiple options

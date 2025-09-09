@@ -1,0 +1,56 @@
+alias gcm="git commit -m"
+alias p="python3"
+
+# File system
+function ls
+    eza -lh --group-directories-first --icons=auto $argv
+end
+
+function lt
+    eza --tree --level=2 --long --icons --git $argv
+end
+
+function lta
+    lt -a $argv
+end
+
+# Directories
+function ..
+    cd ..
+end
+
+function ...
+    cd ../..
+end
+
+function ....
+    cd ../../..
+end
+
+# Tools
+function lzg
+    lazygit $argv
+end
+
+function lzd
+    lazydocker $argv
+end
+
+# Git
+
+function gs
+    git status $argv
+end
+
+function gaa
+    git add . $argv
+end
+
+function gp
+    git push $argv
+end
+
+# Gives you what is using the most space. Both directories and files. Varies on current directory
+function most
+    du -hsx * | sort -rh | head -10
+end
