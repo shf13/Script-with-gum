@@ -5,7 +5,9 @@
 add_bash_aliases() {
     gum spin --spinner dot --title "Adding the aliases..." -- sleep 1
     cat ./dotfiles/bash_aliases >> ~/.bashrc
-    source ~/.bashrc
+    cd ~
+    source .bashrc
+    cd -
     gum style --foreground 85 "✓ Done successfully"
 }
 

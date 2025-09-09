@@ -30,3 +30,5 @@ source ./6.theinstall.sh
 sudo upgrade -y
 
 
+
+
