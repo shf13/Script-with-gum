@@ -9,6 +9,6 @@ SELECTED_OPTIONS_Aliases="BASH"  # Default selection
 
 
 # Let user choose multiple options
-echo "$(gum style --foreground 85 "Do you want to add the peronalized aliases to your bashrc file?")"
+echo "$(gum style --foreground 85 "Do you want to add the peronalized aliases to your shell/vim?")"
 export CHOICES_Aliases=$(gum choose "${AVAILABLE_OPTIONS_Aliases[@]}" --no-limit --selected "$SELECTED_OPTIONS_Aliases" --height 6 --header "Use SPACE to select, ENTER to confirm" | tr '\n' ',' | sed 's/,$//' )
 

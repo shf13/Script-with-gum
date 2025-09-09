@@ -27,5 +27,6 @@ source ./4.services_gum.sh
 source ./5.TUIs.sh
 source ./6.theinstall.sh
 
+sudo upgrade -y
 
 
