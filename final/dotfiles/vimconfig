@@ -1,0 +1,8 @@
+" Set timeout for key sequences (300ms)
+set timeoutlen=300
+
+" jj to save and quit (or quit if unchanged)
+nnoremap jj :x<CR>
+
+" jk to exit Insert mode
+inoremap jk <Esc>

@@ -4,7 +4,7 @@
 # "SYSTEM SETUP WIZARD" "Choose your installation options"
 
 
-AVAILABLE_OPTIONS_Aliases=("BASH" "Fish")
+AVAILABLE_OPTIONS_Aliases=("BASH" "Fish" "Vim")
 SELECTED_OPTIONS_Aliases="BASH"  # Default selection
 
 

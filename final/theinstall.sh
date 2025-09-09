@@ -16,6 +16,17 @@ add_fish_aliases() {
     gum style --foreground 85 "✓ Done successfully"
 }
 
+add_vim_config() {
+    gum spin --spinner dot --title "Adding the vim shortcuts..." -- sleep 1
+    if [ -f ~/.vimrc ]; then
+        cat ./vimconfig >> ~/.vimrc
+    else
+        touch ~/.vimrc
+        cat ./vimconfig >> ~/.vimrc
+    fi  
+    gum style --foreground 85 "✓ Done successfully"
+}
+
 
 # Installation functions for CLI
 install_ranger() {
@@ -175,6 +186,9 @@ for option in "${SELECTED_ARRAY_Aliases[@]}"; do
             ;;
         "Fish")
             add_fish_aliases
+            ;;
+        "Vim")
+            add_vim_config
             ;;
     esac
     echo
