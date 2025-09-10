@@ -6,7 +6,7 @@ add_bash_aliases() {
     gum spin --spinner dot --title "Adding the aliases..." -- sleep 1
     cat ./dotfiles/bash_aliases >> ~/.bashrc
     cd ~
-    source .bashrc
+    source ~/.bashrc
     cd -
     gum style --foreground 85 "✓ Done successfully"
 }
@@ -276,10 +276,6 @@ gum style --foreground 212 --border-foreground 212 --border double --align cente
 "INSTALLATION COMPLETE" "Selected operations finished successfully!"
 
 
-# Final prompt
-echo
-gum style --foreground 85 "Press any key to continue..."
-gum input --placeholder "Press Enter to exit"
 
 
 

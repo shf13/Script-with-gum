@@ -8,7 +8,7 @@ IFS=',' read -ra SELECTED_ARRAY_gitt <<< "$CHOICES_git"
 
 for option in "${SELECTED_ARRAY_gitt[@]}"; do
     case "$option" in
-        "Yas")
+        "Yes")
             source ./terminal/gitgum.sh
             ;;
         "No")

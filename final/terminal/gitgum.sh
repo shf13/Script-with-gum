@@ -42,29 +42,37 @@ gum style \
 	--align center --width 50 --margin "1 1" \
 	'Creating an new SSH key with the entered email'
 
+
+cd ~/.ssh/
 ssh-keygen -t rsa -b 4096 -C "$git_USER_EMAIL"
+cd -
 
 
 # SSH key
 echo "Setting up ssh key for github"
 
-git_ssh_key=$(gum input --placeholder "Enter the name of the ssh key without file extension for git" --prompt "SSH key name> ")
+export git_ssh_key=$(gum input --placeholder "Enter the name of the ssh key without file extension for git" --prompt "SSH key name> ")
+
+
+# Authenticating
 eval "$(ssh-agent -s)"
 
 ssh-add ~/.ssh/$git_ssh_key
 
+# To test connection and authentication after adding the key to GitHub
+ssh -T git@github.com
 
+# Adding the alias to the shell
 if [[ -n "${git_ssh_key//[[:space:]]/}" ]]; then
-    echo "alias ssha4="ssh-add ~/.ssh/$git_ssh_key"" >> ~/.bashrc
-    echo "alias ssha4="ssh-add ~/.ssh/$git_ssh_key"" >> ~/.config/fish/config.fish
+    echo "alias ssha4='ssh-add ~/.ssh/$git_ssh_key' " >> ~/.bashrc
+    echo "alias ssha4='ssh-add ~/.ssh/$git_ssh_key' " >> ~/.config/fish/config.fish
 fi
 
 ssh-add -l
 
 sleep 0.5
 
-# To test connection and authentication after adding the key to GitHub
-ssh -T git@github.com
+
 
 if [ $? -ne 0 ]
 then
