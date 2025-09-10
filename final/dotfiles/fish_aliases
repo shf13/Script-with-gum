@@ -54,3 +54,17 @@ end
 function most
     du -hsx * | sort -rh | head -10
 end
+
+# Git ssh key and authentication
+
+function ssha1
+    eval (ssh-agent -c)
+end
+
+function ssha2
+    ssh-add ~/.ssh/gitkey
+end
+
+function ssha3
+    ssh -T git@github.com
+end
