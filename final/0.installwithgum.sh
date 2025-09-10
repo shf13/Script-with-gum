@@ -25,17 +25,21 @@ sudo apt install curl wget -y
 
 
 source ./1.guminstall.sh
-source ./8.gitchoice.sh
-source ./2.New_CLI_gum.sh
-source ./3.bashrcaliases.sh
-source ./4.services_gum.sh
+source ./2.gitchoice.sh
+source ./3.New_CLI_gum.sh
+source ./4.bashrcaliases.sh
 source ./5.TUIs.sh
-source ./6.theinstall.sh
-source ./9.dev_language.sh
-source ./7.log.sh
+source ./6.services_gum.sh
+source ./7.dev_language.sh
+source ./8.theinstall.sh
+source ./9.log.sh
 
-sudo apt upgrade -y
+sleep 0.5
 source $HOME/.local/bin/env
+
+sleep 0.5
+sudo apt upgrade -y
+
 
 
 # Final prompt

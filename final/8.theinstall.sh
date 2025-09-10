@@ -6,6 +6,7 @@ add_bash_aliases() {
     gum spin --spinner dot --title "Adding the aliases..." -- sleep 1
     cat ./dotfiles/bash_aliases >> ~/.bashrc
     cd ~
+    sleep 0.5
     source ~/.bashrc
     cd -
     gum style --foreground 85 "✓ Done successfully"
@@ -176,6 +177,15 @@ install_lazyvim() {
 }
 
 
+python_install () {
+    sudo apt install python3 -y
+}
+
+python_uv_install () {
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+}
+
+
 
 # Process each selected option
 
@@ -271,11 +281,20 @@ for option in "${SELECTED_ARRAY_TUIs[@]}"; do
     echo
 done
 
-# Completion message
-gum style --foreground 212 --border-foreground 212 --border double --align center --width 50 --margin "1 2" --padding "2 4" \
-"INSTALLATION COMPLETE" "Selected operations finished successfully!"
 
+IFS=',' read -ra SELECTED_ARRAY_lan <<< "$CHOICES_lan"
 
+for option in "${SELECTED_ARRAY_lan[@]}"; do
+    case "$option" in
+        "python")
+            python_install
+            ;;
+        "pythonUV")
+            python_uv_install
+            ;;
+    esac
+    echo
+done
 
 
 
