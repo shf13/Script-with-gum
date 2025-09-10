@@ -47,6 +47,7 @@ ssh-keygen -t rsa -b 4096 -C "$git_USER_EMAIL"
 
 # SSH key
 echo "Setting up ssh key for github"
+
 git_ssh_key=$(gum input --placeholder "Enter the name of the ssh key without file extension for git" --prompt "SSH key name> ")
 eval "$(ssh-agent -s)"
 
