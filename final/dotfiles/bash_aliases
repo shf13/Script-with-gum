@@ -16,7 +16,6 @@ alias lzd='lazydocker'
 
 # Git
 alias gcm='git commit -m'
-alias gcm='git commit -m'
 alias gs="git status"
 alias gaa="git add ."
 alias gp="git push"
