@@ -183,6 +183,10 @@ python_install () {
 
 python_uv_install () {
     curl -LsSf https://astral.sh/uv/install.sh | sh
+	echo " "
+	sleep 1
+	echo " "
+	source $HOME/.local/bin/env
 }
 
 
