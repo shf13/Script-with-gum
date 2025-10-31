@@ -61,7 +61,7 @@ install_ncdu() {
 
 # Installation functions for_services
 install_docker() {
-    gum spin --spinner dot --title "Installing ranger..." -- sleep 0.2
+    gum spin --spinner dot --title "Installing Docker..." -- sleep 0.2
     sleep 0.5
     sudo apt-get update
 
