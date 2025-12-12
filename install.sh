@@ -1,3 +1,3 @@
 #!/bin/bash
-
-bash final/0.installwithgum.sh
+cd install/
+bash 0.installwithgum.sh
