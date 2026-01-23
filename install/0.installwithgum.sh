@@ -32,6 +32,7 @@ source ./5.TUIs.sh
 source ./6.services_gum.sh
 source ./7.dev_language.sh
 source ./8.theinstall.sh
+source ./7.5.uninstallgum.sh
 source ./9.log.sh
 
 sleep 0.5

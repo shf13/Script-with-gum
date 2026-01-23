@@ -39,7 +39,7 @@ install_ranger() {
 }
 
 install_eza() {
-    gum spin --spinner line --title "Installing exa..." -- sleep 0.2
+    gum spin --spinner line --title "Installing eza..." -- sleep 0.2
     sudo apt-get install eza -y
     gum style --foreground 85 "✓ eza installed successfully"
 }
@@ -51,7 +51,7 @@ install_duf() {
 }
 
 install_ncdu() {
-    gum spin --spinner jump --title "Deploying Docker Container..." -- sleep 0.2
+    gum spin --spinner jump --title "Installing ncdu Container..." -- sleep 0.2
 	sudo apt install ncdu -y
     gum style --foreground 85 "✓ ncdu installed successfully"
 }
@@ -178,14 +178,23 @@ install_lazyvim() {
 
 
 python_install () {
+    gum spin --spinner dot --title "Installing Python..." -- sleep 1
     sudo apt install python3 -y
+    gum style --foreground 85 "✓ Python installed successfully"
 }
 
 python_uv_install () {
+    gum spin --spinner dot --title "Installing uv..." -- sleep 1
     curl -LsSf https://astral.sh/uv/install.sh | sh
+    gum style --foreground 85 "✓ uv installed successfully"
 }
 
-
+gum_removal () {
+    gum spin --spinner dot --title "Uninstalling gum..." -- sleep 1
+    sudo apt-get purge gum
+    sudo apt-get autoremove
+    gum style --foreground 85 "✓ gum uninstalled successfully"
+}
 
 # Process each selected option
 
@@ -291,6 +300,23 @@ for option in "${SELECTED_ARRAY_lan[@]}"; do
             ;;
         "pythonUV")
             python_uv_install
+            ;;
+    esac
+    echo
+done
+
+
+
+
+IFS=',' read -ra SELECTED_ARRAY_GUM_CHOICE <<< "$CHOICES_GUM_REMOVAL"
+
+for option in "${SELECTED_ARRAY_GUM_CHOICE[@]}"; do
+    case "$option" in
+        "Yes")
+            gum_removal
+            ;;
+        "NO")
+            gum style --foreground 85 "gum was not removed"
             ;;
     esac
     echo
