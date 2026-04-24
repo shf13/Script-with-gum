@@ -1,7 +1,7 @@
 #!/bin/bash
 # Update, setup ssh key RU, Setting up UFW and adding ssh port, then installing Docker 
 
-AVAILABLE_OPTIONS_services=("Docker" "Adding SSH key" "UFW" "Ollama" "Recursive Nerd Font" )
+AVAILABLE_OPTIONS_services=("Docker" "Adding SSH key" "UFW" "Ollama" "Recursive Nerd Font" "Homebrew" )
 SELECTED_OPTIONS_services="Adding SSH key"  # Default selection
 
 

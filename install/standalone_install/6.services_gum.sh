@@ -1,61 +1,13 @@
 #!/bin/bash
+# Update, setup ssh key RU, Setting up UFW and adding ssh port, then installing Docker 
+
+AVAILABLE_OPTIONS_services=("Docker" "Adding SSH key" "UFW" "Ollama" "Recursive Nerd Font" "Homebrew" )
+SELECTED_OPTIONS_services="Adding SSH key"  # Default selection
 
 
-# Installation functions for Aliases
-add_bash_aliases() {
-    gum spin --spinner dot --title "Adding the aliases..." -- sleep 1
-    cat ./dotfiles/bash_aliases >> ~/.bashrc
-    cd ~
-    sleep 0.5
-    source ~/.bashrc
-    cd -
-    gum style --foreground 85 "✓ Done successfully"
-}
-
-add_fish_aliases() {
-    gum spin --spinner dot --title "Adding the aliases..." -- sleep 1
-    cat ./dotfiles/fish_aliases >> ~/.config/fish/config.fish
-    source ~/.config/fish/config.fish
-    gum style --foreground 85 "✓ Done successfully"
-}
-
-add_vim_config() {
-    gum spin --spinner dot --title "Adding the vim shortcuts..." -- sleep 1
-    if [ -f ~/.vimrc ]; then
-        cat ./vimconfig >> ~/.vimrc
-    else
-        touch ~/.vimrc
-        cat ./dotfiles/vimconfig >> ~/.vimrc
-    fi  
-    gum style --foreground 85 "✓ Done successfully"
-}
-
-
-# Installation functions for CLI
-install_ranger() {
-    gum spin --spinner dot --title "Installing ranger..." -- sleep 0.2
-    sudo apt-get install ranger -y
-    gum style --foreground 85 "✓ ranger installed successfully"
-}
-
-install_eza() {
-    gum spin --spinner line --title "Installing eza..." -- sleep 0.2
-    sudo apt-get install eza -y
-    gum style --foreground 85 "✓ eza installed successfully"
-}
-
-install_duf() {
-    gum spin --spinner minidot --title "Installing duf..." -- sleep 0.2
-    sudo apt install duf -y
-    gum style --foreground 85 "✓ duf installed successfully"
-}
-
-install_ncdu() {
-    gum spin --spinner jump --title "Installing ncdu Container..." -- sleep 0.2
-	sudo apt install ncdu -y
-    gum style --foreground 85 "✓ ncdu installed successfully"
-}
-
+# Let user choose multiple options
+echo "$(gum style --foreground 85 "Select what you want to install:")"
+export CHOICES_services=$(gum choose "${AVAILABLE_OPTIONS_services[@]}" --no-limit --selected "$SELECTED_OPTIONS_services" --height 6 --header "Use SPACE to select, ENTER to confirm" | tr '\n' ',' | sed 's/,$//' )
 
 
 
@@ -183,94 +135,12 @@ install_homebrew() {
 
 
 
-install_lazydocker() {
-    gum spin --spinner dot --title "Installing lazydocker..." -- sleep 0.2
-    bash ./TUIs/lazydocker.sh
-    gum style --foreground 85 "✓ lazydocker installed successfully"
-}
-
-install_lazygit() {
-    gum spin --spinner line --title "Installing lazygit..." -- sleep 0.2
-    bash ./TUIs/lazygit.sh
-    gum style --foreground 85 "✓ lazygit installed successfully"
-}
-
-install_lazyvim() {
-    gum spin --spinner line --title "Installing lazyvim..." -- sleep 0.2
-    bash ./TUIs/neovim/install-neovim.sh
-    gum style --foreground 85 "✓ lazyvim installed successfully"
-}
-
-
-python_install () {
-    gum spin --spinner dot --title "Installing Python..." -- sleep 1
-    sudo apt install python3 -y
-    gum style --foreground 85 "✓ Python installed successfully"
-}
-
-python_uv_install () {
-    gum spin --spinner dot --title "Installing uv..." -- sleep 1
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    gum style --foreground 85 "✓ uv installed successfully"
-}
-
-gum_removal () {
-    gum spin --spinner dot --title "Uninstalling gum..." -- sleep 1
-    sudo apt-get purge gum
-    sudo apt-get autoremove
-}
-
-# Process each selected option
-
-IFS=',' read -ra SELECTED_ARRAY_Aliases <<< "$CHOICES_Aliases"
-
-for option in "${SELECTED_ARRAY_Aliases[@]}"; do
-    case "$option" in
-        "BASH")
-            add_bash_aliases
-            ;;
-        "Fish")
-            add_fish_aliases
-            ;;
-        "Vim")
-            add_vim_config
-            ;;
-    esac
-    echo
-done
-
-##############
 
 
 
-# Process each selected option
-
-IFS=',' read -ra SELECTED_ARRAY_CLI <<< "$CHOICES_CLI"
-
-for option in "${SELECTED_ARRAY_CLI[@]}"; do
-    case "$option" in
-        "ranger")
-            install_ranger
-            ;;
-        "eza")
-            install_eza
-            ;;
-        "duf")
-            install_duf
-            ;;
-        "ncdu")
-            install_ncdu
-            ;;
-    esac
-    echo
-done
-
-###########
 
 
 
-# Process each selected option
-## split a comma-separated string into an array
 IFS=',' read -ra SELECTED_ARRAY_service <<< "$CHOICES_services"
 
 for option in "${SELECTED_ARRAY_service[@]}"; do
@@ -290,72 +160,9 @@ for option in "${SELECTED_ARRAY_service[@]}"; do
         "Ollama")
             install_ollama
             ;;
-        "Homebrew")
-            install_homebrew
-            ;;
     esac
     echo
 done
-
-
-
-
-##################
-
-
-
-# Process each selected option
-## split a comma-separated string into an array
-IFS=',' read -ra SELECTED_ARRAY_TUIs <<< "$CHOICES_TUIs"
-
-for option in "${SELECTED_ARRAY_TUIs[@]}"; do
-    case "$option" in
-        "lazydocker")
-            install_lazydocker
-            ;;
-        "lazygit")
-            install_lazygit
-            ;;
-        "lazyvim")
-            install_lazyvim
-            ;;
-    esac
-    echo
-done
-
-
-IFS=',' read -ra SELECTED_ARRAY_lan <<< "$CHOICES_lan"
-
-for option in "${SELECTED_ARRAY_lan[@]}"; do
-    case "$option" in
-        "python")
-            python_install
-            ;;
-        "UV.python")
-            python_uv_install
-            ;;
-    esac
-    echo
-done
-
-
-
-
-IFS=',' read -ra SELECTED_ARRAY_GUM_CHOICE <<< "$CHOICES_GUM_REMOVAL"
-
-for option in "${SELECTED_ARRAY_GUM_CHOICE[@]}"; do
-    case "$option" in
-        "Yes")
-            gum_removal
-            ;;
-        "NO")
-            gum style --foreground 85 "gum was not removed"
-            ;;
-    esac
-    echo
-done
-
-
 
 
 

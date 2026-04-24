@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AVAILABLE_OPTIONS_language=("python" "pythonUV" )
+AVAILABLE_OPTIONS_language=("python" "UV.python" )
 SELECTED_OPTIONS_CLI="python"  # Default selection
 
 
