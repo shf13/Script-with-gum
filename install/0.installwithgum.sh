@@ -26,11 +26,11 @@ sudo apt install curl wget -y
 
 source ./1.guminstall.sh
 source ./2.gitchoice.sh
-source ./3.New_CLI_gum.sh
-source ./4.bashrcaliases.sh
+source ./3.cli.sh
+source ./4.aliases.sh
 source ./5.TUIs.sh
-source ./6.services_gum.sh
-source ./7.dev_language.sh
+source ./6.services.sh
+source ./7.dev_languages.sh
 source ./7.5.uninstallgum.sh
 source ./8.theinstall.sh
 source ./9.log.sh
