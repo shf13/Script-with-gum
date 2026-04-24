@@ -156,6 +156,25 @@ setting_up_UFW() {
     gum style --foreground 85 "✓ UFW is installed and setup to allow only 22 port but not enable successfully"
 }
 
+install_recursive_nerd_font() {
+    gum spin --spinner line --title "Installing Recursive Nerd font..." -- sleep 0.2
+    wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Recursive.zip \  
+    && cd ~/.local/share/fonts \  
+    && unzip Recursive.zip \  
+    && rm Recursive.zip \  
+    && fc-cache -fv
+}
+
+install_ollama() {
+    gum spin --spinner line --title "Installing Ollama using the curl script from the website << curl -fsSL https://ollama.com/install.sh | sh >>..." -- sleep 0.2
+    curl -fsSL https://ollama.com/install.sh | sh
+}
+
+
+
+
+
+
 
 
 install_lazydocker() {
@@ -259,6 +278,12 @@ for option in "${SELECTED_ARRAY_service[@]}"; do
             ;;
         "UFW")
             setting_up_UFW
+            ;;
+        "Recursive Nerd Font")
+            install_recursive_nerd_font
+            ;;
+        "Ollama")
+            install_ollama
             ;;
     esac
     echo

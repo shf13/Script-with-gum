@@ -1,6 +1,7 @@
 # File system
 
 alias ls='eza -lh --group-directories-first --icons=auto'
+alias la='eza -alh --group-directories-first --icons=auto'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
 
@@ -30,4 +31,21 @@ alias ssha3="ssh -T git@github.com"
 alias most='du -hsx * | sort -rh | head -10'
 
 
+# Gives you what is using the most space. Both directories and files. Varies on current directory
+alias most='du -hsx * | sort -rh | head -10'
+
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+
+
+# Shutdown
+alias shutdown="sudo shutdown now"
+alias restart="sudo reboot now"
+
+# FZF alias and TMUX
+
+alias iv='vim $(fzf --preview "bat --color=always {}")'
+
+alias cfzf='fzf --preview "bat --color=always {}"'
 

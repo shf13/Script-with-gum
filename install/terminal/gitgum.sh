@@ -11,12 +11,14 @@ gum style --foreground 212 --border-foreground 212 --border double --align cente
 "Setting up git user and email" "Making main as the defualt branch"
 ################
 
+# --------------------------------
 # Set git defaults
 ### To make "main" as the default branch main instead of "master"
 git config --global init.defaultBranch main
 
 
 
+# --------------------------------
 # Set git user, email, and ssh key.
 echo "Enter identification for git and autocomplete..."
 SYSTEM_NAME=$(getent passwd "$USER" | cut -d ':' -f 5 | cut -d ',' -f 1)
@@ -24,6 +26,7 @@ export git_USER_NAME=$(gum input --placeholder "Enter full name" --value "$SYSTE
 export git_USER_EMAIL=$(gum input --placeholder "Enter email address" --prompt "Email> ")
 
 
+# --------------------------------
 # Set identification from install inputs
 # this makes sure that the varibale isn't just empty space ↴
 if [[ -n "${git_USER_NAME//[[:space:]]/}" ]]; then
@@ -36,6 +39,7 @@ fi
 
 
 
+# --------------------------------
 ## Creating an new SSH key
 gum style \
 	--foreground 212 \
@@ -43,38 +47,64 @@ gum style \
 	'Creating an new SSH key with the entered email'
 
 
-cd ~/.ssh/
+if [ -d ~/.ssh/ ]; then
+	cd ~/.ssh/
+else 
+	mkdir ~/.ssh/
+	cd ~/.ssh/
+fi
+
 ssh-keygen -t rsa -b 4096 -C "$git_USER_EMAIL"
-cd -
 
 
+
+# --------------------------------
 # SSH key
 echo "Setting up ssh key for github"
 
 export git_ssh_key=$(gum input --placeholder "Enter the name of the ssh key without file extension for git" --prompt "SSH key name> ")
 
 
+# --------------------------------
 # Authenticating
 eval "$(ssh-agent -s)"
 
 ssh-add ~/.ssh/$git_ssh_key
 
+# --------------------------------
 # To test connection and authentication after adding the key to GitHub
 ssh -T git@github.com
 
+# --------------------------------
 # Adding the alias to the shell
+
+
+addingaliasforthegitkeytotheshell(){
+	echo "alias ssha4='ssh-add ~/.ssh/$git_ssh_key' " >> ~/.bashrc
+	if [ -e ~/.config/fish/config.fish ]; then
+		echo "alias ssha4='ssh-add ~/.ssh/$git_ssh_key' " >> ~/.config/fish/config.fish
+	else	 
+		echo "Fish shell doesn't exist"
+	fi
+}
+
+
 if [[ -n "${git_ssh_key//[[:space:]]/}" ]]; then
-    echo "alias ssha4='ssh-add ~/.ssh/$git_ssh_key' " >> ~/.bashrc
-    echo "alias ssha4='ssh-add ~/.ssh/$git_ssh_key' " >> ~/.config/fish/config.fish
+    addingaliasforthegitkeytotheshell
 fi
 
+# --------------------------------
 ssh-add -l
+
+# --------------------------------
 
 sleep 0.5
 
 
+cd -
 
-if [ $? -ne 0 ]
-then
-        echo "there was an error"
-fi
+# --------------------------------
+# if [ $? -ne 0 ]
+# then
+#         echo "there was an error"
+# fi

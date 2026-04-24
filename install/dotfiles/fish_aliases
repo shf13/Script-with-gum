@@ -6,6 +6,10 @@ function ls
     eza -lh --group-directories-first --icons=auto $argv
 end
 
+function la
+    eza -alh --group-directories-first --icons=auto $argv
+end
+
 function lt
     eza --tree --level=2 --long --icons --git $argv
 end
