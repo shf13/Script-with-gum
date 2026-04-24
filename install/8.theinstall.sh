@@ -158,16 +158,18 @@ setting_up_UFW() {
 
 install_recursive_nerd_font() {
     gum spin --spinner line --title "Installing Recursive Nerd font..." -- sleep 0.2
-    wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Recursive.zip \  
-    && cd ~/.local/share/fonts \  
-    && unzip Recursive.zip \  
-    && rm Recursive.zip \  
-    && fc-cache -fv
+    # wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Recursive.zip \  
+    # && cd ~/.local/share/fonts \  
+    # && unzip Recursive.zip \  
+    # && rm Recursive.zip \  
+    # && fc-cache -fv
+    echo "IT IS WORKING NERD"   
 }
 
 install_ollama() {
     gum spin --spinner line --title "Installing Ollama using the curl script from the website << curl -fsSL https://ollama.com/install.sh | sh >>..." -- sleep 0.2
-    curl -fsSL https://ollama.com/install.sh | sh
+    # curl -fsSL https://ollama.com/install.sh | sh
+    echo "IT IS WORKING OLLAMA"
 }
 
 
