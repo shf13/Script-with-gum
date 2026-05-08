@@ -22,13 +22,28 @@ add_fish_aliases() {
 add_vim_config() {
     gum spin --spinner dot --title "Adding the vim shortcuts..." -- sleep 1
     if [ -f ~/.vimrc ]; then
-        cat ./vimconfig >> ~/.vimrc
+        cat ./dotfiles/vimconfig >> ~/.vimrc
     else
         touch ~/.vimrc
         cat ./dotfiles/vimconfig >> ~/.vimrc
     fi  
     gum style --foreground 85 "✓ Done successfully"
 }
+
+add_podman_registries() {
+    gum spin --spinner dot --title "Adding the Podman registries..." -- sleep 1
+    if [ -f ~/.config/containers/registries.conf ]; then
+        cat ./dotfiles/podmanregistries >> ~/.config/containers/registries.conf
+    else
+        mdkir -p ~/.config/containers
+        touch ~/.config/containers/registries.conf
+        cat ./dotfiles/podmanregistries >> ~/.config/containers/registries.conf
+    fi  
+    gum style --foreground 85 "✓ Done successfully"
+}
+
+
+
 
 
 # Installation functions for CLI
@@ -179,6 +194,13 @@ install_homebrew() {
 }
 
 
+install_podman() {
+    gum spin --spinner line --title "Installing Homebrew using the curl script from the offical website..." -- sleep 0.2
+    gum style --foreground 117 --border-foreground 250 --border double --align center --width 50 --margin "1 2" --padding "2 4" 'Installing Podman and Podman compose'
+    sudo apt-get -y install podman
+    sudo apt-get -y install podman-compose
+}
+
 
 
 
@@ -234,6 +256,9 @@ for option in "${SELECTED_ARRAY_Aliases[@]}"; do
             ;;
         "Vim")
             add_vim_config
+            ;;
+        "Podman_registries")
+            add_podman_registries
             ;;
     esac
     echo
@@ -292,6 +317,9 @@ for option in "${SELECTED_ARRAY_service[@]}"; do
             ;;
         "Homebrew")
             install_homebrew
+            ;;
+        "Podman")
+            install_podman
             ;;
     esac
     echo

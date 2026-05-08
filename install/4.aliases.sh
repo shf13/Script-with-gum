@@ -4,7 +4,7 @@
 # "SYSTEM SETUP WIZARD" "Choose your installation options"
 
 
-AVAILABLE_OPTIONS_Aliases=("BASH" "Fish" "Vim")
+AVAILABLE_OPTIONS_Aliases=("BASH" "Fish" "Vim" "Podman_registries")
 SELECTED_OPTIONS_Aliases="BASH"  # Default selection
 
 

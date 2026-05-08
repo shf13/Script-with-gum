@@ -4,7 +4,7 @@
 # "SYSTEM SETUP WIZARD" "Choose your installation options"
 
 
-AVAILABLE_OPTIONS_Aliases=("BASH" "Fish" "Vim")
+AVAILABLE_OPTIONS_Aliases=("BASH" "Fish" "Vim" "Podman_registries")
 SELECTED_OPTIONS_Aliases="BASH"  # Default selection
 
 
@@ -43,6 +43,19 @@ add_vim_config() {
 
 
 
+add_podman_registries() {
+    gum spin --spinner dot --title "Adding the Podman registries..." -- sleep 1
+    if [ -f ~/.config/containers/registries.conf ]; then
+        cat ./dotfiles/podmanregistries >> ~/.config/containers/registries.conf
+    else
+        mdkir -p ~/.config/containers
+        touch ~/.config/containers/registries.conf
+        cat ./dotfiles/podmanregistries >> ~/.config/containers/registries.conf
+    fi  
+    gum style --foreground 85 "✓ Done successfully"
+}
+
+
 IFS=',' read -ra SELECTED_ARRAY_Aliases <<< "$CHOICES_Aliases"
 
 for option in "${SELECTED_ARRAY_Aliases[@]}"; do
@@ -56,6 +69,9 @@ for option in "${SELECTED_ARRAY_Aliases[@]}"; do
         "Vim")
             add_vim_config
             ;;
+        "Podman_registries")
+            add_podman_registries
+            ;;            
     esac
     echo
 done

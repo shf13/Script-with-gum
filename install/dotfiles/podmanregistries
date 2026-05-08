@@ -1,0 +1,15 @@
+[registries]
+  # Define the list of unqualified search registries.
+  unqualified-search-registries = ["docker.io", "registry.redhat.io", "ghcr.io", "quay.io"]
+
+[registries.search]
+  # List of registries that are used for image search when pulling.
+  registries = ["docker.io", "registry.redhat.io", "ghcr.io", "quay.io"]
+
+[registries.insecure]
+  # List of registries that are considered insecure.
+  insecure = []
+
+[registries.block]
+  # List of registries that are blocked (not allowed to pull images).
+  block = []

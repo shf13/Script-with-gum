@@ -1,7 +1,7 @@
 #!/bin/bash
 # Update, setup ssh key RU, Setting up UFW and adding ssh port, then installing Docker 
 
-AVAILABLE_OPTIONS_services=("Docker" "Adding SSH key" "UFW" "Ollama" "Recursive Nerd Font" "Homebrew" )
+AVAILABLE_OPTIONS_services=("Docker" "Adding SSH key" "UFW" "Ollama" "Recursive Nerd Font" "Homebrew" "Podman")
 SELECTED_OPTIONS_services="Adding SSH key"  # Default selection
 
 
@@ -131,7 +131,12 @@ install_homebrew() {
 }
 
 
-
+install_podman() {
+    gum spin --spinner line --title "Installing Homebrew using the curl script from the offical website..." -- sleep 0.2
+    gum style --foreground 117 --border-foreground 250 --border double --align center --width 50 --margin "1 2" --padding "2 4" 'Installing Podman and Podman compose'
+    sudo apt-get -y install podman
+    sudo apt-get -y install podman-compose
+}
 
 
 
@@ -160,10 +165,14 @@ for option in "${SELECTED_ARRAY_service[@]}"; do
         "Ollama")
             install_ollama
             ;;
+        "Homebrew")
+            install_homebrew
+            ;;
+        "Podman")
+            install_podman
+            ;;
     esac
     echo
 done
-
-
 
 
