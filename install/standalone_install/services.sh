@@ -110,11 +110,7 @@ setting_up_UFW() {
 
 install_recursive_nerd_font() {
     gum spin --spinner line --title "Installing Recursive Nerd font..." -- sleep 0.2
-    wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Recursive.zip \  
-    && cd ~/.local/share/fonts \  
-    && unzip Recursive.zip \  
-    && rm Recursive.zip \  
-    && fc-cache -fv
+    wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Recursive.zip && cd ~/.local/share/fonts && unzip Recursive.zip  && rm Recursive.zip && fc-cache -fv 
 }
 
 install_ollama() {

@@ -48,7 +48,7 @@ add_podman_registries() {
     if [ -f ~/.config/containers/registries.conf ]; then
         cat ./dotfiles/podmanregistries >> ~/.config/containers/registries.conf
     else
-        mdkir -p ~/.config/containers
+        mkdir -p ~/.config/containers
         touch ~/.config/containers/registries.conf
         cat ./dotfiles/podmanregistries >> ~/.config/containers/registries.conf
     fi  
