@@ -49,3 +49,6 @@ alias iv='vim $(fzf --preview "bat --color=always {}")'
 
 alias cfzf='fzf --preview "bat --color=always {}"'
 
+# copy and move with progress
+alias pcp="rsync -ah --info=progress2"
+alias pmv="rsync -ah --info=progress2 --remove-source-files"
